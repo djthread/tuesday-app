@@ -1,0 +1,95 @@
+<template>
+  <div class="main">
+
+    <div class="section-primary">
+      <h1>Techno Tuesday</h1>
+      <p class="slug">Hosted LIVE Each and Every Tuesday from Urban Bean Co in Detroit!</p>
+
+      <div class="videowrapper">
+        <video id="thevideo" class="video-js vjs-default-skin embed-responsive-item"
+         controls preload="auto" poster="/images/poster.jpg">
+          <source src="rtmp://techtues.net/live/techno" type="rtmp/flv">
+        </video>
+      </div>
+      
+      <div class="info">${state.infoline}</div>
+
+      <div class="main-schedule-next">
+        <compose view="_schedule_next"></compose>
+      </div>
+    </div>
+
+    <!--
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle Navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">
+					<i class="fa fa-home"></i>
+					<span>${router.title}</span>
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+						<a href.bind="row.href">${row.title}</a>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="loader" if.bind="router.isNavigating">
+						<i class="fa fa-spinner fa-spin fa-2x"></i>
+					</li>
+				</ul>
+			</div>
+		</nav>
+    -->
+
+    <div class="section-secondary">
+      <tabs tabs.bind="ttTabs"></tabs>
+      <tab-sections>
+        <tab-section section="section-chat" view-model="chat" default-section="yup">
+        </tab-section>
+        <tab-section section="section-schedule" view-model="schedule">
+        </tab-section>
+        <tab-section section="section-podcast" view-model="podcast">
+        </tab-section>
+        <tab-section section="section-info" view-model="info">
+        </tab-section>
+      </tab-sections>
+      <!-- <router-view></router-view> -->
+    </div>
+
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+  <footer>
+    <div class="right bit lg">
+      <p>Techno Tuesday is a Thread production.</p>
+      <p>Urban Bean Co.<br>
+      200 Grand River Ave<br>
+      Detroit, MI 48226</p>
+    </div>
+    <div class="right bit sm">
+      <p>Made possible by</p>
+      <ul>
+        <li><a href="https://github.com/arut/nginx-rtmp-module">nginx-rtmp-module</a>, <a href="http://nginx.org/nginx">nginx</a></li>
+        <li><a href="http://www.phoenixframework.org/">Phoenix</a>, <a href="http://elixir-lang.org/">Elixir</a></li>
+        <li><a href="http://aurelia.io/">Aurelia</a>, <a href="http://videojs.com/">Video.js</a></li>
+      </ul>
+    </div>
+    <div class="right bit sm">
+      <p>Special thanks to</p>
+      <ul>
+        <li><a href="https://twitter.com/urbanbeanco">Urban Bean Co.</a></li>
+        <li><a href="https://rocketfiber.com/">Rocket Fiber</a></li>
+      </ul>
+    </div>
+    <div class="clearer">&nbsp;</div>
+  </footer>
+
+</div>
+</template>
