@@ -31,7 +31,7 @@ export class App {
   }
 
   attached() {
-    videojs.options.flash.swf = "/jspm_packages/npm/video.js@5.7.1/dist/video-js.swf"
+    videojs.options.flash.swf = "/jspm_packages/npm/video.js@5.8.0/dist/video-js.swf"
     videojs(document.getElementById('thevideo'), {"fluid": true, "aspectRatio": "16:9"});
   }
 }
