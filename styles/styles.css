@@ -24,7 +24,7 @@ body {
 
 div.videowrapper { width: 100%; }
 
-ul.tabs { margin-bottom: 0.4em; margin-top: 0.4em; padding-left: 0.5em; }
+ul.tabs { clear: both; margin-bottom: 0.4em; margin-top: 0.4em; padding-left: 0.5em; }
 .tabs__tab a { display: block; color: #ccc; padding-bottom: 0.6em; }
 .tabs__tab a:hover { color: #ccc; text-decoration: none; }
 tab-sections,div.tab-sections { height: 100%; }

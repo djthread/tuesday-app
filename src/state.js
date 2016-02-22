@@ -5,7 +5,7 @@ import {inject} from "aurelia-framework";
 @inject(EventAggregator)
 export class State {
   constructor(eventAggregator) {
-    this.socketUri = "//localhost:4000/socket";
+    this.socketUri = "//techtues.net/socket";
     this.messages  = [];
     this.lastStamp = null;
     this.infoline  = "";
