@@ -1,7 +1,9 @@
 {
   "name": "Tuesday",
-  "socket": {
-    "endpoint": "//techtues.net/socket"
+  "production": {
+    "socket": {
+      "endpoint": "//api.techtues.net/socket"
+    }
   },
   "development": {
     "socket": {

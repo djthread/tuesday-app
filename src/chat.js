@@ -6,7 +6,6 @@ import {Cookie} from "aurelia-cookie";
 @inject(State, EventAggregator)
 export class Chat {
   constructor(state, eventAggregator) {
-    this.cookie      = cookie;
     this.state       = state;
     this.lots        = 9999999;
     this.scrollTop   = 0;
