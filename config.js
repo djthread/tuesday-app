@@ -14,8 +14,11 @@ System.config({
   },
 
   map: {
+    "Vheissu/aurelia-cookie": "github:Vheissu/aurelia-cookie@1.0.1",
     "aurelia-animator-css": "npm:aurelia-animator-css@1.0.0-beta.1.1.1",
     "aurelia-bootstrapper": "npm:aurelia-bootstrapper@1.0.0-beta.1.1.2",
+    "aurelia-configuration": "github:vheissu/aurelia-configuration@1.0.3",
+    "aurelia-cookie": "github:djthread/aurelia-cookie@1.0.1",
     "aurelia-fetch-client": "npm:aurelia-fetch-client@1.0.0-beta.1.1.0",
     "aurelia-framework": "npm:aurelia-framework@1.0.0-beta.1.1.3",
     "aurelia-history-browser": "npm:aurelia-history-browser@1.0.0-beta.1.1.2",
@@ -36,6 +39,21 @@ System.config({
     "phoenix.js": "github:djthread/phoenix.js@1.1.4",
     "text": "github:systemjs/plugin-text@0.0.3",
     "video.js": "npm:video.js@5.8.0",
+    "github:aurelia/dependency-injection@0.9.2": {
+      "aurelia-logging": "github:aurelia/logging@0.6.4",
+      "aurelia-metadata": "github:aurelia/metadata@0.7.3",
+      "core-js": "npm:core-js@0.9.18"
+    },
+    "github:aurelia/event-aggregator@0.7.0": {
+      "aurelia-logging": "github:aurelia/logging@0.6.4"
+    },
+    "github:aurelia/http-client@0.10.3": {
+      "aurelia-path": "github:aurelia/path@0.8.1",
+      "core-js": "npm:core-js@0.9.18"
+    },
+    "github:aurelia/metadata@0.7.3": {
+      "core-js": "npm:core-js@0.9.18"
+    },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
     },
@@ -55,7 +73,13 @@ System.config({
       "util": "npm:util@0.10.3"
     },
     "github:twbs/bootstrap@3.3.6": {
-      "jquery": "github:components/jquery@2.2.0"
+      "jquery": "github:components/jquery@2.2.1"
+    },
+    "github:vheissu/aurelia-configuration@1.0.3": {
+      "aurelia-dependency-injection": "github:aurelia/dependency-injection@0.9.2",
+      "aurelia-event-aggregator": "github:aurelia/event-aggregator@0.7.0",
+      "aurelia-http-client": "github:aurelia/http-client@0.10.3",
+      "core-js": "npm:core-js@0.9.18"
     },
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
@@ -199,6 +223,11 @@ System.config({
       "ieee754": "npm:ieee754@1.1.6",
       "isarray": "npm:isarray@1.0.0",
       "process": "github:jspm/nodelibs-process@0.1.2"
+    },
+    "npm:core-js@0.9.18": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.2",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:core-js@1.2.6": {
       "fs": "github:jspm/nodelibs-fs@0.1.2",

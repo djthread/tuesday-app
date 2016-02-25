@@ -1,0 +1,11 @@
+{
+  "name": "Tuesday",
+  "socket": {
+    "endpoint": "//techtues.net/socket"
+  },
+  "development": {
+    "socket": {
+      "endpoint": "//localhost:4000/socket"
+    }
+  }
+}

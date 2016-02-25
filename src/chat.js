@@ -1,29 +1,24 @@
 import {State} from "./state";
 import {inject} from "aurelia-framework";
-import {EventAggregator} from 'aurelia-event-aggregator';
+import {EventAggregator} from "aurelia-event-aggregator";
+import {Cookie} from "aurelia-cookie";
 
 @inject(State, EventAggregator)
 export class Chat {
-  state;
-  lots      = 999999;
-  scrollTop = 0;
-  username  = "";    // form field value
-  message   = "";    // form field value
-
   constructor(state, eventAggregator) {
-    this.state = state;
+    this.cookie      = cookie;
+    this.state       = state;
+    this.lots        = 9999999;
+    this.scrollTop   = 0;
+    this.username    = Cookie.get("username");
+    this.message     = "";
+    this.nameTimeout = null;
 
     this.scrollMessagesToBottom();
 
     eventAggregator.subscribe("message", message => {
       this.scrollMessagesToBottom();
     }.bind(this));
-  }
-
-  attached() {
-    // setTimeout(function() {
-    //   this.scrollMessagesToBottom();
-    // }.bind(this), 10000);  // stupid hax
   }
 
   scrollMessagesToBottom() {
@@ -38,5 +33,6 @@ export class Chat {
     this.state.lobby.push("new:msg", {user: this.username, body: this.message});
     console.log('------>', this.username, this.message);
     this.message = '';
+    Cookie.set("username", $event.target.value);
   }
 }

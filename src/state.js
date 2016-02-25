@@ -1,22 +1,22 @@
 import {Socket, LongPoller} from "phoenix.js";
 import {EventAggregator} from "aurelia-event-aggregator";
 import {inject} from "aurelia-framework";
+import {Configure} from "aurelia-configuration";
 
-@inject(EventAggregator)
+@inject(Configure, EventAggregator)
 export class State {
-  constructor(eventAggregator) {
-    this.socketUri = "//techtues.net/socket";
+  constructor(config, eventAggregator) {
+    this.ea        = eventAggregator;
+    this.socketUri = config.get("socket.endpoint");
     this.messages  = [];
     this.lastStamp = null;
     this.infoline  = "";
-    this.ea        = eventAggregator;
 
     [this.socket, this.lobby, this.stat] = this.startSocket();
   }
 
   pushEvent(ev, msg) {
     msg = this.setupStamps(msg);
-    console.log("-->", ev, msg);
     msg.ev = ev;
     this.messages.push(msg);
     this.ea.publish("message", msg);
