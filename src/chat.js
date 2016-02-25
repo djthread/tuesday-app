@@ -27,11 +27,11 @@ export class Chat {
   }
 
   shout() {
-    this.message = this.message.trim();
+    this.message  = this.message.trim();
+    this.username = this.username.trim();
+    Cookie.set("username", this.username);
     if (!this.message) return;
     this.state.lobby.push("new:msg", {user: this.username, body: this.message});
-    console.log('------>', this.username, this.message);
     this.message = '';
-    Cookie.set("username", $event.target.value);
   }
 }
