@@ -48,10 +48,21 @@ p.slug { margin: 0; color: #999; margin-top: -0.4em; margin-bottom: 0.5em; color
 .listing .artist { color: white; margin-right: 0.2em; font-size: 150%; }
 .listing .meta { font-style: italic; }
 .listing .moar { margin-left: 5em; font-size: 80%; }
-.messages { overflow: scroll; margin-bottom: 0.3em;
-    border: 2px solid rgba(99,99,99,0.5); padding: 0 1em;
-    background-color: rgba(0,0,0,0.33);
-    width: 100%;
+.messages-outer {
+  height: 80%;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 0.3em;
+}
+
+.messages {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  padding-right: 20px;
+  padding: 0 1em;
+  border: 2px solid rgba(99,99,99,0.5);
+  background-color: rgba(0,0,0,0.33);
 }
 div.thechat { height: 100%; }
 .messages .stamp { font-size: x-small; float: right; }
