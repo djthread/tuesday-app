@@ -1,7 +1,9 @@
 * { box-sizing: border-box; }
 
+.splash { margin: 1em; }
 .main-schedule-next { display: none; padding-top: 1em; }
 .messages { height: 12em; }
+footer { margin-top: 12em; }
 
 @media (min-width: 700px) {
   .section-primary { float: left; width: 50%; }
@@ -10,6 +12,7 @@
     margin-left: 50%; padding-left: 12px; padding-top: 1.6em; }
   .main-schedule-next { display: block; }
   .messages { height: 80%; }
+  footer { margin-top: 6em; }
 }
 
 a { color: #FF9; }
@@ -76,7 +79,7 @@ input.chat-submit { visibility: hidden; }
 .projekktor { margin-top: 1em; }
 .info { height: 1em; float: right; font-size: small; color: #999; }
 .info span { font-weight: bold; color: white; }
-footer { clear: both; padding: 20px 40px; margin-top: 6em;
+footer { clear: both; padding: 20px 40px;
     border-top: 2px solid #333;
     background: rgba(0, 0, 0, .50); }
 footer .bit { float: left; }
