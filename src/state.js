@@ -15,6 +15,22 @@ export class State {
     [this.socket, this.lobby, this.stat] = this.startSocket();
   }
 
+  join(channel, args, happyCb) {
+    var channel = this.socket.channel(channel, args);
+    channel.join()
+      .receive("ignore", () => console.log(channel + ": auth error"))
+      .receive("ok",     happyCb)
+      .receive("error",  () => console.log(channel + ": Connection interruption"));
+    return channel;
+  }
+
+  push(channel, message, args, happyCb) {
+    channel.push(message, args, 10000)
+      .receive("ok", happyCb)
+      .receive("error", (reasons) => console.log("Show list failed:", reasons))
+      .receive("timeout", () => console.log("Networking issue..."));
+  }
+
   pushEvent(ev, msg) {
     msg = this.setupStamps(msg);
     msg.ev = ev;
