@@ -11,6 +11,10 @@
   .main-schedule-next { display: block; }
 }
 
+.video-js { margin: 0.5em 0; }
+.video-js.vjs-fluid { height: 3em !important; }
+.vjs_video_327-dimensions.vjs-fluid { padding-top: 0 !important; }
+
 a { color: #FF9; }
 a:hover,a:active { text-decoration: none; }
 

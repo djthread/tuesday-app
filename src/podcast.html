@@ -1,3 +1,12 @@
 <template>
-  <p>The plan is to bring it into this space, but for now, you can click here to check out the <a href="https://threadbox.net/show">Techno Tuesday Podcast</a>.</p>
+  <require from="player"></require>
+
+  <a repeat.for="s of shows" href="#" class="show_link" click.trigger="switch(s.id)">${s.name}</a>
+  <ul class="episodes">
+    <li repeat.for="e of episodes">
+      ${e.title}
+      ${e.description}
+      <player episode.bind="e">
+    </li>
+  </ul>
 </template>
