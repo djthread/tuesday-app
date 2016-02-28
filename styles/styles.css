@@ -57,6 +57,7 @@ p.slug { margin: 0; color: #999; margin-top: -0.4em; margin-bottom: 0.5em; color
 
 .messages {
   max-height: 18em;
+  min-height: 18em;
   height: 100%;
   width: 100%;
   overflow: auto;
