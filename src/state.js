@@ -11,8 +11,27 @@ export class State {
     this.messages  = [];
     this.lastStamp = null;
     this.infoline  = "";
+    this.shows     = [];
+    this.current   = {
+      showslug: null
+    };
 
-    [this.socket, this.lobby, this.stat] = this.startSocket();
+    this.socket  = null;
+    this.chan    = {
+      lobby:   null,
+      stat:    null,
+      episode: null
+    };
+  }
+
+  startup(cb) {
+    this.startSocket((socket, lobby, stat, episode) => {
+      this.socket       = socket;
+      this.chan.lobby   = lobby;
+      this.chan.stat    = stat;
+      this.chan.episode = episode;
+      cb();
+    }.bind(this));
   }
 
   join(channel, args, happyCb) {
@@ -38,29 +57,40 @@ export class State {
     this.ea.publish("message", msg);
   }
 
-  startSocket() {
+  startSocket(cb) {
     var socket = new Socket(this.socketUri, {
       logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) })
     });
 
+    this.socket = socket;
+
     socket.connect();
 
     socket.onOpen(ev => {
-        console.log("OPEN", ev)
-        this.messages = [];
-        this.stat     = {};
+      console.log("OPEN", ev)
+      this.messages = [];
+      this.stat     = {};
     }.bind(this));
 
     socket.onError(ev => console.log("ERROR", ev));
     socket.onClose(e => console.log("CLOSE", e));
 
-    var lobby = this.setupChat(socket),
-        stat  = this.setupStat(socket);
+    var lobby, stat, episode;
 
-    return [socket, lobby, stat];
+    // This could be better
+    this.setupChat(socket, (_lobby) => {
+      lobby = _lobby;
+      this.setupStat(socket, (_stat) => {
+        stat = _stat;
+        this.setupEpisode(socket, (_episode) => {
+          episode = _episode;
+          cb(socket, lobby, stat, episode);
+        });
+      });
+    });
   }
 
-  setupChat(socket) {
+  setupChat(socket, cb) {
     var lobby = socket.channel("rooms:lobby", {})
 
     lobby.join().receive("ignore", () => console.log("auth error"))
@@ -78,10 +108,10 @@ export class State {
       this.pushEvent("user:entered", msg);
     }.bind(this));
 
-    return lobby;
+    cb(lobby);
   }
 
-  setupStat(socket) {
+  setupStat(socket, cb) {
     var stat = socket.channel("rooms:stat", {})
 
     stat.join().receive("ignore", () => console.log("auth error"))
@@ -96,6 +126,17 @@ export class State {
                     + " / " + stat.online + " online";
     }.bind(this));
 
+    cb(stat);
+  }
+
+  setupEpisode(socket, cb) {
+    var episode = this.join(
+      "episode", {}, () => console.log("join ok")
+    );
+    this.push(episode, "shows", {}, (r) => {
+      this.shows = r.shows;
+      cb(episode);
+    }.bind(this));
   }
 
   setupStamps(msg) {

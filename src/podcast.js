@@ -6,29 +6,14 @@ export class Podcast {
   constructor(state) {
     this.state    = state;
     this.showId   = null;
-    this.channel  = null;
     this.episodes = [];
-    this.shows    = [];
   }
 
-  attached() {
-    this.channel = this.state.join(
-      "episode", {}, () => console.log("join ok")
-    );
-    this.push("shows", {}, (r) => {
-      this.initShows(r.shows);
-    }.bind(this));
-  }
+  activate(params, navigationInstruction) {
+    var slug = this.state.current.showslug;
 
-  initShows(shows) {
-    var showId = shows[0] ? shows[0].id : null
-
-    this.shows = shows;
-
-    if (!showId) return;
-
-    push("episodes", {show_id: showId}, (r) => {
-      this.initEpisodes(r.episodes, showId);
+    this.push("episodes", {slug: slug, page: 1}, (r) => {
+      this.initEpisodes(r.shows);
     }.bind(this));
   }
 
@@ -38,6 +23,7 @@ export class Podcast {
   }
 
   push(message, args, happyCb) {
-    this.state.push(this.channel, message, args, happyCb);
+    this.state.push(
+      this.state.chan.episode, message, args, happyCb);
   }
 }

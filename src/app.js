@@ -5,33 +5,41 @@ import {inject} from "aurelia-framework";
 @inject(State)
 export class App {
 
-  ttTabs = [];
-  video  = null;  // dom element
-
   configureRouter(config, router) {
-    // config.title = 'Techno Tuesday';
-    // config.map([
-    //   { route:    ['', 'chat'],
-    //     name:     'chat',
-    //     moduleId: './chat',
-    //     nav:      true
-    //   }
-    // ]);
-    // this.router = router;
+    this.router = router;
+
+    config.map([
+      { route:    ["", "chat"], title: "Chat",     name: "chat",
+        moduleId: "./chat",     nav:   true
+      },
+      { route:    ["schedule"], title: "Schedule", name: "schedule",
+        moduleId: "./schedule", nav:   true
+      },
+      { route:    ["shows"],    title: "Shows",    name: "shows",
+        moduleId: "./shows",    nav:   true
+      },
+      { route:    ["about"],    title: "About",    name: "about",
+        moduleId: "./about",    nav:   true
+      },
+    ]);
   }
 
   constructor(state) {
     this.state = state;
-    this.ttTabs = [
-      {id: "section-chat",     label: "Chat", selected: true},
-      {id: "section-schedule", label: "Schedule"},
-      {id: "section-podcast",  label: "Podcast"},
-      {id: "section-info",     label: "Info"}
-    ];
+  }
+
+  activate() {
+    return new Promise((accept, reject) => {
+      this.state.startup(() => {
+        accept()
+      });
+    }.bind(this));
   }
 
   attached() {
-    videojs.options.flash.swf = "/jspm_packages/npm/video.js@5.8.0/dist/video-js.swf"
-    videojs(document.getElementById('thevideo'), {"fluid": true, "aspectRatio": "16:9"});
+    videojs.options.flash.swf =
+      "/jspm_packages/npm/video.js@5.8.0/dist/video-js.swf"
+    videojs(document.getElementById('thevideo'),
+      {"fluid": true, "aspectRatio": "16:9"});
   }
 }

@@ -8,7 +8,6 @@ export class Player {
 
   constructor(element) {
     this.element = element;
-    console.log('ELEMENT', this.element);
   }
 
   attached() {

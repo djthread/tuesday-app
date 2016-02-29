@@ -24,15 +24,38 @@ body {
   margin: 0;
   color: #ccc;
   font-family: "Jura", sans-serif;
-  background: black url("/images/bean.jpg") repeat fixed center;
+  /* background: black url("/images/bean.jpg") repeat fixed center; */
+  background: #222;
 }
 
 div.videowrapper { width: 100%; }
 
-ul.tabs { clear: right; margin-bottom: 0.4em; margin-top: 0.4em; padding-left: 0.5em; }
-.tabs__tab a { display: block; color: #ccc; padding-bottom: 0.6em; }
-.tabs__tab a:hover { color: #ccc; text-decoration: none; }
-tab-sections,div.tab-sections { height: 100%; }
+ul.navbar-nav { list-style-type: none; padding: 0; clear: both; }
+ul.navbar-nav a { float: left; text-decoration: none;
+  display: block; padding: 5px 0.5em; }
+ul.navbar-nav a:hover { background-color: rgba(0,0,0,0.33); }
+ul.navbar-nav li.active a { color: #fff; border: 1px solid rgba(99,99,99,0.5);
+  border-bottom: none;
+  background-color: rgba(0,0,0,0.33); }
+.tabsplit {
+  border-bottom: 2px solid rgba(99,99,99,0.5); }
+
+ul.show-nav { list-style-type: none; padding: 0; }
+ul.show-nav li { width: 50%; padding: 5px; float: left; }
+ul.show-nav a { width: 100%; display: block; text-decoration: none;
+  padding: 5px; text-align: center; background-color: rgba(0,0,0,0.33);
+  border: 1px solid rgba(255,255,255,0.2); color: #999; }
+ul.show-nav li.active a,ul.showsection-nav a:hover { color: white;
+  background-color: rgba(0,0,0,1); }
+
+
+ul.showsection-nav { list-style-type: none; padding: 0; }
+ul.showsection-nav li { width: 50%; padding: 5px; float: left; }
+ul.showsection-nav a { width: 100%; display: block; text-decoration: none;
+  padding: 5px; text-align: center; background-color: rgba(0,0,0,0.33);
+  border: 1px solid rgba(255,255,255,0.2); color: #999; }
+ul.showsection-nav li.active a,ul.showsection-nav a:hover { color: white;
+  background-color: rgba(0,0,0,1); }
 
 .icon { width: 48px; height: 48px; }
 .icon-map-marker { fill: #999; }
@@ -68,6 +91,7 @@ p.slug { margin: 0; color: #999; margin-top: -0.4em; margin-bottom: 0.5em; color
   padding-right: 20px;
   padding: 0 1em;
   border: 2px solid rgba(99,99,99,0.5);
+  border-top: none;
   background-color: rgba(0,0,0,0.33);
 }
 div.thechat { height: 100%; }
@@ -91,4 +115,4 @@ footer .lg .bit p { }
 footer .sm { width: 30%; }
 footer .sm .bit p { margin: 0; }
 strong { color: white; }
-.clearer { clear: both; line-height: 0; }
+.clearer { clear: both; line-height: 0; padding: 0; margin: 0; }
